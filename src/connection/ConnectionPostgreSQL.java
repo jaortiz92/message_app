@@ -1,16 +1,20 @@
+package connection;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import ui.*;
 
 public class ConnectionPostgreSQL implements Connections{
     Connection connection;
     String rute;
     String user;
     String pass;
+    View view;
 
     public ConnectionPostgreSQL(String pass){
-
+        view = new ViewTerminal();
         connection = null;
         rute = "jdbc:postgresql://localhost:5432/message_app";
         user = "postgres";
@@ -22,9 +26,8 @@ public class ConnectionPostgreSQL implements Connections{
     public Connection get_connection() {
         try {
             connection = DriverManager.getConnection(rute, user, pass);
-            JOptionPane.showMessageDialog(null, "Base de datos conectada con exito");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error de coneccion " + e);
+            view.show("Error de coneccion " + e);
         }
         return connection;
     }
