@@ -13,11 +13,11 @@ public class ConnectionPostgreSQL implements Connections{
     String pass;
     View view;
 
-    public ConnectionPostgreSQL(String pass){
+    public ConnectionPostgreSQL(String user, String pass){
         view = new ViewTerminal();
         connection = null;
         rute = "jdbc:postgresql://localhost:5432/message_app";
-        user = "postgres";
+        this.user = user;
         this.pass = pass;
     }
 

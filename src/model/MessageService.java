@@ -4,6 +4,7 @@ import ui.View;
 import ui.ViewTerminal;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MessageService {
@@ -18,15 +19,25 @@ public class MessageService {
         MessageDAO.createMessageDB(message, connection);
     }
 
-    public static void listMessage(){
+    public static void listMessage(Connection connection){
+        View view = new ViewTerminal();
 
+        ArrayList<Message> results = new ArrayList<>();
+        results = MessageDAO.readMessageDB(connection);
+        for (Message result: results){
+            view.show(result.toString() + "\n");
+        }
     }
 
-    public static void deleteMessage(){
+    public static void deleteMessage(Connection connection){
+        View view = new ViewTerminal();
 
+        int id_message;
+        id_message = view.readInteger("Insert message's id to delete");
+        MessageDAO.deleteMessageDB(id_message, connection);
     }
 
-    public static void editMessage(){
+    public static void editMessage(Connection connection){
 
     }
 }

@@ -1,6 +1,5 @@
 package model;
 
-import java.text.SimpleDateFormat;
 import java.sql.Date;
 
 public class Message {
@@ -8,14 +7,28 @@ public class Message {
     private String text_message;
     private String author_message;
     private Date date_message;
-
-    public Message() {
-    }
+    private String date_string_message;
 
     public Message(String text_message, String author_message, String date_message){
         this.text_message = text_message;
         this.author_message = author_message;
+        this.date_string_message = date_message;
         setDate_message(date_message);
+    }
+
+    public Message(int id_message, String text_message, String author_message, String date_string_message){
+        this.id_message = id_message;
+        this.text_message = text_message;
+        this.author_message = author_message;
+        this.date_string_message = date_string_message;
+    }
+
+    public String getDate_string_message() {
+        return date_string_message;
+    }
+
+    public void setDate_string_message(String date_string_message) {
+        this.date_string_message = date_string_message;
     }
 
     public int getId_message() {
@@ -47,11 +60,19 @@ public class Message {
     }
 
     public void setDate_message(String date_message) {
-        int year = Integer.valueOf(date_message.substring(0, 3));
-        int month = Integer.valueOf(date_message.substring(5, 6));
-        int day = Integer.valueOf(date_message.substring(8, 9));
-        Date date = new Date(year, month, day);
+        int year = Integer.valueOf(date_message.substring(0, 4));
+        int month = Integer.valueOf(date_message.substring(5, 7));
+        int day = Integer.valueOf(date_message.substring(8, 10));
+        Date date = new Date( year - 1900 , month - 1, day);
         this.date_message = date;
     }
 
+    @Override
+    public String toString() {
+        return //"Message: \n" +
+                "ID: " + id_message +
+                "\tAuthor: " + author_message +
+                "\tDate: " + date_string_message +
+                "\n\t'" + text_message + "'";
+    }
 }

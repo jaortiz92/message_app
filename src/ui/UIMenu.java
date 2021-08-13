@@ -31,13 +31,13 @@ public class UIMenu {
                     MessageService.createMessage(connection);
                     break;
                 case 2:
-                    MessageService.listMessage();
+                    MessageService.listMessage(connection);
                     break;
                 case 3:
-                    MessageService.editMessage();
+                    MessageService.editMessage(connection);
                     break;
                 case 4:
-                    MessageService.deleteMessage();
+                    MessageService.deleteMessage(connection);
                     break;
                 case 5:
                     view.show("Good Bye!!!");
