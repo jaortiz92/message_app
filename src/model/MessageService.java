@@ -38,6 +38,13 @@ public class MessageService {
     }
 
     public static void editMessage(Connection connection){
+        View view = new ViewTerminal();
+        int id_message = view.readInteger("Write id to change: ");
+        String text_message = view.readString("Write the message: ");
+        String author_message = view.readString("Your name: ");
+        String date_message = view.readString("Date (2020/12/31): ");
 
+        Message message = new Message(text_message, author_message, date_message, id_message);
+        MessageDAO.updateMessageDB(message, connection);
     }
 }

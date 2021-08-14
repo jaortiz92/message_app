@@ -58,8 +58,6 @@ public class MessageDAO {
         View view = new ViewTerminal();
 
         PreparedStatement ps = null;
-        ResultSet result = null;
-        ArrayList<Message> resultMessages = new ArrayList<>();
 
         try {
             String query = "DELETE FROM messages WHERE id_message = ?";
@@ -81,7 +79,31 @@ public class MessageDAO {
 
     }
 
-    public static void updateMessageDB(Message message){
+    public static void updateMessageDB(Message message, Connection connection){
+        View view = new ViewTerminal();
 
+        PreparedStatement ps = null;
+
+        try {
+            String query = "UPDATE messages SET text_message = ?, author_message = ?, date_message = ? WHERE id_message = ?";
+            ps = connection.prepareStatement(query);
+
+            ps.setString(1, message.getText_message());
+            ps.setString(2, message.getAuthor_message());
+            ps.setDate(3, message.getDate_message());
+            ps.setInt(4, message.getId_message());
+
+            int countRowsUpdate = ps.executeUpdate();
+            if (countRowsUpdate != 0){
+                view.show("Message updated");
+            }  else {
+                view.show("ID: " + message.getId_message() + " was not found");
+            }
+
+
+        } catch (SQLException e) {
+            view.show("Massage does not updated");
+            view.show("Error " + e);
+        }
     }
 }

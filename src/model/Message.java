@@ -16,6 +16,14 @@ public class Message {
         setDate_message(date_message);
     }
 
+    public Message(String text_message, String author_message, String date_message, int id_message){
+        this.text_message = text_message;
+        this.author_message = author_message;
+        this.date_string_message = date_message;
+        this.id_message = id_message;
+        setDate_message(date_message);
+    }
+
     public Message(int id_message, String text_message, String author_message, String date_string_message){
         this.id_message = id_message;
         this.text_message = text_message;
