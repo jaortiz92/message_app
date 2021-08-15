@@ -7,14 +7,13 @@ import java.sql.SQLException;
 import ui.*;
 
 public class ConnectionPostgreSQL implements Connections{
-    Connection connection;
-    String rute;
-    String user;
-    String pass;
-    View view;
+    private Connection connection;
+    private String rute;
+    private String user;
+    private String pass;
+    public static final View view = new ViewTerminal();
 
     public ConnectionPostgreSQL(String user, String pass){
-        view = new ViewTerminal();
         connection = null;
         rute = "jdbc:postgresql://localhost:5432/message_app";
         this.user = user;
@@ -31,4 +30,6 @@ public class ConnectionPostgreSQL implements Connections{
         }
         return connection;
     }
+
+
 }

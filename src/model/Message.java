@@ -9,6 +9,7 @@ public class Message {
     private Date date_message;
     private String date_string_message;
 
+
     public Message(String text_message, String author_message, String date_message){
         this.text_message = text_message;
         this.author_message = author_message;

@@ -9,11 +9,11 @@ public class Main {
     public static void main(String[] args) {
 
 
-        //String pass = JOptionPane.showInputDialog("Password");
+        /*String pass = JOptionPane.showInputDialog("Password");
         connection.Connections connection = new connection.ConnectionPostgreSQL("usermessageapp","messagePlatzi");
-        Connection connect = connection.get_connection();
+        Connection connect = connection.get_connection();*/
 
-        showMenu(connect);
+        showMainMenu();
 
         /*Message msg = new Message("Donde estoy", "Tintin", "2021/04/30");
         System.out.println(msg.getDate_message());

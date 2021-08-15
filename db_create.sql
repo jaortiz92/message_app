@@ -27,3 +27,10 @@ ALTER TABLE public.messages
 
 GRANT all privileges ON DATABASE message_app TO usermessageapp;
 REVOKE all privileges ON DATABASE message_app FROM usermessageapp;
+
+CREATE TABLE users (
+    id_user SERIAL PRIMARY KEY,
+    email VARCHAR(50) NOT NULL,
+    password_user VARCHAR(32),
+    name_user VARCHAR(50)
+);

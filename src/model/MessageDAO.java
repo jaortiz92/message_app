@@ -7,13 +7,17 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class MessageDAO {
-    public static void createMessageDB(Message message, Connection connection){
-        View view = new ViewTerminal();
+
+    public static final connection.Connections connection = new connection.ConnectionPostgreSQL("usermessageapp","messagePlatzi");
+    public static final Connection connect = connection.get_connection();
+    public static final View view = new ViewTerminal();
+
+    public static void createMessageDB(Message message){
 
         PreparedStatement ps = null;
         try {
             String query = "INSERT INTO messages (text_message, author_message, date_message) VALUES (?, ?, ?)";
-            ps = connection.prepareStatement(query);
+            ps = connect.prepareStatement(query);
             ps.setString(1, message.getText_message());
             ps.setString(2, message.getAuthor_message());
             ps.setDate(3, (Date) message.getDate_message());
@@ -27,8 +31,7 @@ public class MessageDAO {
 
     }
 
-    public static ArrayList<Message> readMessageDB(Connection connection){
-        View view = new ViewTerminal();
+    public static ArrayList<Message> readMessageDB(){
 
         PreparedStatement ps = null;
         ResultSet result = null;
@@ -36,7 +39,7 @@ public class MessageDAO {
 
         try {
             String query = "SELECT * FROM messages";
-            ps = connection.prepareStatement(query);
+            ps = connect.prepareStatement(query);
             // Ejecutar queries datos en la DB
             result = ps.executeQuery();
 
@@ -54,14 +57,13 @@ public class MessageDAO {
         return resultMessages;
     }
 
-    public static void deleteMessageDB(int id_message, Connection connection){
-        View view = new ViewTerminal();
+    public static void deleteMessageDB(int id_message){
 
         PreparedStatement ps = null;
 
         try {
             String query = "DELETE FROM messages WHERE id_message = ?";
-            ps = connection.prepareStatement(query);
+            ps = connect.prepareStatement(query);
             ps.setInt(1, id_message);
 
             int countRowsUpdate = ps.executeUpdate();
@@ -79,14 +81,13 @@ public class MessageDAO {
 
     }
 
-    public static void updateMessageDB(Message message, Connection connection){
-        View view = new ViewTerminal();
+    public static void updateMessageDB(Message message){
 
         PreparedStatement ps = null;
 
         try {
             String query = "UPDATE messages SET text_message = ?, author_message = ?, date_message = ? WHERE id_message = ?";
-            ps = connection.prepareStatement(query);
+            ps = connect.prepareStatement(query);
 
             ps.setString(1, message.getText_message());
             ps.setString(2, message.getAuthor_message());
