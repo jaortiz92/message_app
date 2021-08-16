@@ -30,7 +30,7 @@ REVOKE all privileges ON DATABASE message_app FROM usermessageapp;
 
 CREATE TABLE users (
     id_user SERIAL PRIMARY KEY,
-    email VARCHAR(50) NOT NULL,
-    password_user VARCHAR(32),
-    name_user VARCHAR(50)
+    email VARCHAR(50) NOT NULL UNIQUE,
+    password_user VARCHAR(32) NOT NULL,
+    name_user VARCHAR(50) NOT NULL
 );

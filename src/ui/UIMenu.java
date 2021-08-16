@@ -29,6 +29,10 @@ public class UIMenu {
             switch (option){
                 case 1:
                     userLogged = UserService.logIn();
+                    if (userLogged == null){
+                        view.show("You used all attempts");
+                        break;
+                    }
                     showMenuFirth();
                     break;
                 case 2:
@@ -66,6 +70,7 @@ public class UIMenu {
                     showMenuUsers();
                     break;
                 case 3:
+                    view.show("Good bye " + userLogged.getNameUser() + "!!!");
                     break;
                 default:
                     view.show(option + " it's not a correct option");
@@ -92,13 +97,13 @@ public class UIMenu {
 
             switch (option) {
                 case 1:
-                    MessageService.createMessage();
+                    MessageService.createMessage(userLogged);
                     break;
                 case 2:
                     MessageService.listMessage();
                     break;
                 case 3:
-                    MessageService.editMessage();
+                    MessageService.editMessage(userLogged);
                     break;
                 case 4:
                     MessageService.deleteMessage();

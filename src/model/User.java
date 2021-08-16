@@ -19,6 +19,13 @@ public class User {
         this.passwordUser = passwordUser;
     }
 
+    public User(int id_user, String email, String passwordUser, String nameUser){
+        this.id_user = id_user;
+        this.email = email;
+        this.passwordUser = passwordUser;
+        this.nameUser = nameUser;
+    }
+
     public int getId_user() {
         return id_user;
     }
@@ -49,5 +56,11 @@ public class User {
 
     public void setNameUser(String nameUser) {
         this.nameUser = nameUser;
+    }
+
+    @Override
+    public String toString(){
+        return  "ID: " + id_user + " Email: " + email +
+                "\nName: " + nameUser;
     }
 }

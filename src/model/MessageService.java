@@ -11,9 +11,9 @@ public class MessageService {
 
     public static final View view = new ViewTerminal();
 
-    public static void createMessage(){
+    public static void createMessage(User user){
         String text_message = view.readString("Write the message:");
-        String author_message = view.readString("Your name: ");
+        String author_message = user.getNameUser();
         String date_message = view.readString("Date (2020/12/31): ");
 
         Message message = new Message(text_message, author_message, date_message);
@@ -36,11 +36,11 @@ public class MessageService {
         MessageDAO.deleteMessageDB(id_message);
     }
 
-    public static void editMessage(){
+    public static void editMessage(User user){
 
         int id_message = view.readInteger("Write id to change: ");
         String text_message = view.readString("Write the message: ");
-        String author_message = view.readString("Your name: ");
+        String author_message = user.getNameUser();
         String date_message = view.readString("Date (2020/12/31): ");
 
         Message message = new Message(text_message, author_message, date_message, id_message);
