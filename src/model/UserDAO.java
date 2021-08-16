@@ -62,12 +62,14 @@ public class UserDAO {
             ps = connect.prepareStatement(query);
             ps.setString(1, email);
             result = ps.executeQuery();
+
             while (result.next()) {
                 user = new User(result.getInt("id_user"),
                         result.getString("email"),
                         result.getString("password_user"),
                         result.getString("name_user"));
             }
+
         } catch (SQLException e) {
             view.show("Error " + e);
         }

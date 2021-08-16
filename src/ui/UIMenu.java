@@ -88,9 +88,10 @@ public class UIMenu {
                         "\n\t\tMenu of messages" +
                         "\n\t1. Create message" +
                         "\n\t2. List messages" +
-                        "\n\t3. Edit message" +
-                        "\n\t4. Delete message" +
-                        "\n\t5. Exit" +
+                        "\n\t3. List my messages" +
+                        "\n\t4. Edit message" +
+                        "\n\t5. Delete message" +
+                        "\n\t6. Exit" +
                         "\n__________________";
 
             option = view.readInteger(show);
@@ -103,18 +104,21 @@ public class UIMenu {
                     MessageService.listMessage();
                     break;
                 case 3:
-                    MessageService.editMessage(userLogged);
+                    MessageService.listMessage(true, userLogged);
                     break;
                 case 4:
-                    MessageService.deleteMessage();
+                    MessageService.editMessage(userLogged);
                     break;
                 case 5:
+                    MessageService.deleteMessage(userLogged);
+                    break;
+                case 6:
                     break;
                 default:
                     view.show(option + " it's not a correct option");
                     break;
             }
-        } while (option != 5);
+        } while (option != 6);
     }
 
     public static void showMenuUsers(){

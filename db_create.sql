@@ -2,10 +2,18 @@ CREATE DATABASE message_app;
 
 \c message_app;
 
+
+CREATE TABLE users (
+    id_user SERIAL PRIMARY KEY,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    password_user VARCHAR(32) NOT NULL,
+    name_user VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE messages (
     id_message SERIAL PRIMARY KEY,
     text_message VARCHAR(280),
-    author_message VARCHAR(50),
+    id_user INTEGER,
     date_message DATE    
 );
 
@@ -24,13 +32,15 @@ ALTER ROLE usermessageapp CREATEROLE;
 
 ALTER TABLE public.messages
     OWNER TO usermessageapp;
+    
 
 GRANT all privileges ON DATABASE message_app TO usermessageapp;
 REVOKE all privileges ON DATABASE message_app FROM usermessageapp;
 
-CREATE TABLE users (
-    id_user SERIAL PRIMARY KEY,
-    email VARCHAR(50) NOT NULL UNIQUE,
-    password_user VARCHAR(32) NOT NULL,
-    name_user VARCHAR(50) NOT NULL
-);
+ALTER TABLE public.messages
+    ADD CONSTRAINT users_messages_id_user FOREIGN KEY (id_user)
+    REFERENCES public.users (id_user) MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+    NOT VALID;
+

@@ -38,10 +38,16 @@ public class UserService {
         String password = "";
 
         do {
+            if (attempt > 0){
+                view.show("Information is not correct");
+            }
             String email = view.readString("Insert email: ");
             password = view.readString("Insert password: ");
             user = UserDAO.searchUser(email);
             attempt ++;
+            if (user == null){
+                user = new User("","");
+            }
         } while ((!user.getPasswordUser().equalsIgnoreCase(password)) && (attempt <= 3));
 
         if (!user.getPasswordUser().equalsIgnoreCase(password)){

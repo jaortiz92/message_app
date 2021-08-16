@@ -4,15 +4,16 @@ import java.sql.Date;
 
 public class Message {
     private int id_message;
+    private int id_user;
     private String text_message;
     private String author_message;
     private Date date_message;
     private String date_string_message;
 
 
-    public Message(String text_message, String author_message, String date_message){
+    public Message(String text_message, int id_user, String date_message){
         this.text_message = text_message;
-        this.author_message = author_message;
+        this.id_user = id_user;
         this.date_string_message = date_message;
         setDate_message(date_message);
     }
@@ -74,6 +75,14 @@ public class Message {
         int day = Integer.valueOf(date_message.substring(8, 10));
         Date date = new Date( year - 1900 , month - 1, day);
         this.date_message = date;
+    }
+
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
     @Override
