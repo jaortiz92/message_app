@@ -89,8 +89,8 @@ public class Message {
     public String toString() {
         return //"Message: \n" +
                 "ID: " + id_message +
-                "\tAuthor: " + author_message +
-                "\tDate: " + date_string_message +
+                "\t Author: " + author_message +
+                "\t Date: " + date_string_message +
                 "\n\t'" + text_message + "'";
     }
 }

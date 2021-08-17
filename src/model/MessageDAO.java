@@ -2,6 +2,7 @@ package model;
 
 import ui.View;
 import ui.ViewTerminal;
+import ui.ViewWindow;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class MessageDAO {
 
     public static final connection.Connections connection = new connection.ConnectionPostgreSQL("usermessageapp","messagePlatzi");
     public static final Connection connect = connection.get_connection();
-    public static final View view = new ViewTerminal();
+    public static final View view = new ViewWindow();
 
     public static void createMessageDB(Message message){
 

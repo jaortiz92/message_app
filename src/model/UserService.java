@@ -3,12 +3,13 @@ package model;
 
 import ui.View;
 import ui.ViewTerminal;
+import ui.ViewWindow;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
 public class UserService {
-    public static final View view = new ViewTerminal();
+    public static final View view = new ViewWindow();
 
     public static void createUser(){
         String email = view.readString("Insert email: ");
@@ -20,9 +21,13 @@ public class UserService {
 
     public static void listUsers(){
         ArrayList<User> listUsers = UserDAO.readUsersDB();
+        String show = "";
+
         for(User user: listUsers){
-            view.show(user.toString());
+            show = show + user.toString() + "\n" +
+                "___________________________\n";
         }
+        view.show(show);
     }
 
     public static void editUser(User user){

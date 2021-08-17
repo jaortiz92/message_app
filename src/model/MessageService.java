@@ -2,6 +2,7 @@ package model;
 
 import ui.View;
 import ui.ViewTerminal;
+import ui.ViewWindow;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.Scanner;
 
 public class MessageService {
 
-    public static final View view = new ViewTerminal();
+    public static final View view = new ViewWindow();
 
     public static void createMessage(User user){
         String text_message = view.readString("Write the message:");
@@ -23,9 +24,12 @@ public class MessageService {
     public static void listMessage(){
         ArrayList<Message> results;
         results = MessageDAO.readMessageDB();
+        String show = "";
         for (Message result: results){
-            view.show(result.toString() + "\n");
+            show = show + result.toString() + "\n" +
+                "___________________________\n";
         }
+        view.show(show);
     }
 
     public static void listMessage(boolean myMessages, User user){
@@ -33,9 +37,12 @@ public class MessageService {
         ArrayList<Message> results;
         results = MessageDAO.readMyMessageDB(user);
 
+        String show = "";
         for (Message result: results){
-            view.show(result.toString() + "\n");
+            show = show + result.toString() + "\n" +
+                    "___________________________\n";
         }
+        view.show(show);
     }
 
 

@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class UIMenu {
 
-    public static final View view = new ViewTerminal();
+    public static final View view = new ViewWindow();
     public static User userLogged;
 
     public static void showMainMenu(){
